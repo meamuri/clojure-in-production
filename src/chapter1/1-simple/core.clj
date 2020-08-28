@@ -9,12 +9,15 @@
                    (-> request-method name .toUpperCase)
                        uri)}))
 
-(def server
-  (run-jetty app {:port 8080 :join? false}))
+(def server (atom nil))
+
+(defn start [] 
+  (reset! server (run-jetty app {:port 8080 :join? false})))
 
 (defn stop [] 
-  (.stop server))
+  (.stop @server)
+  (reset! server nil))
 
 (comment 
+  (start)
   (stop))
-
