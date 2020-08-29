@@ -12,10 +12,14 @@
    :headers {"Content-Type" "text/html"}
    :body "<head></head><body>order<body>"})
 
-(defn concret-order-view [_]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body "<head></head><body>order<body>"})
+(defn concrete-order-view [request]
+  (let [{:keys [params]} request
+        order-id (get-in params [:id])]
+    (print params)
+    {:status 200
+     :headers {"Content-Type" "text/html"}
+     :body 
+     (format "<head></head><body>order %s <body>" order-id)}))
 
 (defn order-form [_]
   {:status 200
@@ -27,7 +31,7 @@
     (GET "/view" request (order-view request))
     (context "/edit" []
       (GET "/" request (order-form request)))
-    concret-order-view)
+    concrete-order-view)
   not-found)
 
 (def server (atom nil))
