@@ -1,6 +1,6 @@
 (ns core
   (:require [ring.adapter.jetty :refer [run-jetty]]
-            [compojure.core :refer [GET defroutes context]]))
+            [compojure.core :refer [GET ANY POST defroutes context]]))
 
 (defn not-found [_]
   {:status 404
@@ -10,7 +10,7 @@
 (defn order-view [_]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body "<head></head><body>order<body>"})
+   :body "<head></head><body>order view after editing<body>"})
 
 (defn concrete-order-view [request]
   (let [{:keys [params]} request
@@ -26,12 +26,19 @@
    :headers {"Content-Type" "text/html"}
    :body "<head></head><body>the form<body>"})
 
+(defn order-change [request]
+  (let [order-id (get-in request [:params :id])]
+    {:status 302
+     :headers {"Location" (format "/content/order/%s/view" order-id)}}))
+
 (defroutes app
   (context "/content/order/:id" [order-id]
     (GET "/view" request (order-view request))
     (context "/edit" []
-      (GET "/" request (order-form request)))
+      (GET "/" request (order-form request))
+      (POST "/" request (order-change request)))
     concrete-order-view)
+  (ANY "/health" _ "ok")
   not-found)
 
 (def server (atom nil))
