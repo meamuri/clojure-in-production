@@ -1,6 +1,7 @@
 (ns core
   (:require [bidi.bidi :as bidi]
-            [ring.adapter.jetty :refer [run-jetty]]))
+            [ring.adapter.jetty :refer [run-jetty]]
+            [taoensso.timbre :as timbre :refer [info]]))
 
 (def routes 
   [["/content/order/" :id] {"/view" {:get :page-view}
@@ -35,6 +36,16 @@
      :headers {"content-type" "text/html"}
      :body (render-order-view order)}
     page-404))
+
+(defmethod multi-handler :page-save
+  [request]
+  (let [{:keys [params route-params]} request ; Fixme: actual post form now is presented at :body, not :param
+        order-id (get route-params :id)
+        id (keyword order-id)]
+    (timbre/info request) ; TODO: parse :body instead of params fow swapping order
+    (reset! orders (assoc @orders id params))
+    {:status 302
+     :headers {"Location" (format "/content/order/%s/view" order-id)}}))
 
 (defn wrap-handler [handler]
   (fn [request]
