@@ -1,7 +1,8 @@
 (ns core
   (:require [bidi.bidi :as bidi]
             [ring.adapter.jetty :refer [run-jetty]]
-            [taoensso.timbre :as timbre :refer [info]]))
+            [taoensso.timbre :as timbre]
+            [ring.middleware.json :refer [wrap-json-body]]))
 
 (def routes 
   [["/content/order/" :id] {"/view" {:get :page-view}
@@ -39,11 +40,11 @@
 
 (defmethod multi-handler :page-save
   [request]
-  (let [{:keys [params route-params]} request ; Fixme: actual post form now is presented at :body, not :param
+  (let [{:keys [body route-params]} request
         order-id (get route-params :id)
         id (keyword order-id)]
-    (timbre/info request) ; TODO: parse :body instead of params fow swapping order
-    (reset! orders (assoc @orders id params))
+    (timbre/info request)
+    (reset! orders (assoc @orders id body))
     {:status 302
      :headers {"Location" (format "/content/order/%s/view" order-id)}}))
 
@@ -52,8 +53,8 @@
     (let [{:keys [uri]} request
           request* (bidi/match-route* routes uri request)]
       (handler request*))))
-
-(def app (wrap-handler multi-handler))
+(def base-app (wrap-handler multi-handler))
+(def app (wrap-json-body base-app {:keywords? true}))
 
 (def server (atom nil))
 
