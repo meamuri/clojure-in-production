@@ -1,5 +1,6 @@
 (ns core
-  (:require [bidi.bidi :as bidi]))
+  (:require [bidi.bidi :as bidi]
+            [ring.adapter.jetty :refer [run-jetty]]))
 
 (def routes
   ["/" {"" :page-index
@@ -14,5 +15,39 @@
 
 (def wrapped (wrap-handler identity))
 
+(defmulti multi-handler
+  :handler)
+
+(defmethod multi-handler :page-index
+  [request]
+  {:status 200
+   :headlers {"content-type" "text/plain"}
+   :body "Learning clojure"})
+
+(defmethod multi-handler :page-hello
+  [request]
+  {:status 200
+   :headlers {"content-type" "text/plain"}
+   :body "Hello bidi"})
+
+(defmethod multi-handler :not-found
+  [request]
+  {:status 404
+   :headlers {"content-type" "text/plain"}
+   :body "Page not found"})
+
+(def app (wrap-handler multi-handler))
+
+(def server (atom nil))
+
+(defn start []
+  (reset! server (run-jetty app {:port 8080 :join? false})))
+
+(defn stop []
+  (.stop @server)
+  (reset! server nil))
+
 (comment
-  (wrapped {:request-method :get :uri "/hello?foo=42"}))
+  (wrapped {:request-method :get :uri "/hello?foo=42"})
+  (start)
+  (stop))
