@@ -9,3 +9,5 @@ Examples from "clojure in production" book
   * [Complex compojure routes](/src/chapter1/3-compojure-advanced/core.clj)
   * [Bidi routing](/src/chapter1/4-bidi-routing/core.clj)
   * [Bidi advanced](/src/chapter1/5-bidi-advanced/core.clj)
+  * [Middleware base](/src/chapter1/6-base-middleware/core.clj)
+  * [Stack middleware](/src/chapter1/7-middleware-stack/core.clj)
