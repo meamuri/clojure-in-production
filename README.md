@@ -11,3 +11,5 @@ Examples from "clojure in production" book
   * [Bidi advanced](/src/chapter1/5-bidi-advanced/core.clj)
   * [Middleware base](/src/chapter1/6-base-middleware/core.clj)
   * [Stack middleware](/src/chapter1/7-middleware-stack/core.clj)
+  * [Cookie base](/src/chapter1/8-cookie-middleware/core.clj)
+  * [Session middleware](/src/chapter1/9-session-middleware/core.clj)
