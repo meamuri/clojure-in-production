@@ -14,7 +14,9 @@
 (defn with-log-parameters [handler]
   (fn [request]
     (let [params (get request :params)]
-      (timbre/info params)) ;; Fixme: twice logging - with actual parameter and then with empty map
+      (timbre/info params)) ;; Fixme: This message will be logged twice after request from browser 
+                            ;; because browser sends request to /favicon.ico endpoint (https://stackoverflow.com/questions/42966419/duplication-evaluation-in-clojure-ring)
+                            ;; Modify routing for preventing this side effect
     (handler request)))
 
 (def wrap-params* (comp wrap-params wrap-keyword-params))
