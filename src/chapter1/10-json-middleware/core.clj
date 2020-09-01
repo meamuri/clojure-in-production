@@ -3,7 +3,8 @@
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.middleware.params :refer [wrap-params]]
-            [compojure.core :refer [GET POST defroutes context]]))
+            [compojure.core :refer [GET POST defroutes context]]
+            [taoensso.timbre :as timbre]))
 
 (def wrap-params+ (comp wrap-params wrap-keyword-params))
 
@@ -14,11 +15,12 @@
 
 (defn get-all-users [_]
   {:status 200
-   :body @users})
+   :body (vals @users)})
 
-(defn handle-user-view [user-id] 
-  (fn [request] 
-    (if-let [user (get-in @users [user-id])]
+(defn handle-get-user [request]  
+  (let [user-id (-> request :params :id keyword)]
+    (timbre/info (-> request :params)) ;; debug printing params
+    (if-let [user (get @users user-id)]
       {:status 200
        :body user}
       {:status 404
@@ -31,9 +33,9 @@
 (defroutes app-routes
   (context "/users" []
     (GET "/" request (get-all-users request))
-    (context "/:id" [user-id]
-      (GET "/" request ((handle-user-view (keyword user-id)) request))
-      (POST "/" request ((handle-user-change (keyword user-id)) request)))))
+    (context "/:id" [_]
+      (GET "/" request (handle-get-user request))
+      (POST "/" request ((handle-user-change (keyword :1)) request)))))
 
 
 (def app (-> app-routes             
