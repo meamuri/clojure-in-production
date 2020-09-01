@@ -13,3 +13,4 @@ Examples from "clojure in production" book
   * [Stack middleware](/src/chapter1/7-middleware-stack/core.clj)
   * [Cookie base](/src/chapter1/8-cookie-middleware/core.clj)
   * [Session middleware](/src/chapter1/9-session-middleware/core.clj)
+  * [JSON middleware](/src/chapter1/10-json-middleware/core.clj)
