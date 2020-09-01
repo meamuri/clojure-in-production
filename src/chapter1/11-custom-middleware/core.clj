@@ -39,7 +39,8 @@
      :body {:some-info "of course"}}))
 
 (defroutes request-id-example-app 
-  (GET "/show-request-id" request (show-request-id request)))
+  (GET "/show-request-id" request (show-request-id request))
+  (GET "/smart-endpoint" _ "simple"))
 
 (defroutes host-example-app
   (GET "/show-host" request (show-host request)))
