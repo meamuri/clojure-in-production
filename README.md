@@ -15,3 +15,5 @@ Examples from "clojure in production" book
   * [Session middleware](/src/chapter1/9-session-middleware/core.clj)
   * [JSON middleware](/src/chapter1/10-json-middleware/core.clj)
   * [Custom middlewares](/src/chapter1/11-custom-middleware/core.clj)
+  * [Middleware stack](/src/chapter1/12-stack-interruption/core.clj)
+  * [Exception handling](/src/chapter1/13-exception-handling/core.clj)
