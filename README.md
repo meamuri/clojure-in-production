@@ -17,6 +17,7 @@ Examples from "clojure in production" book
   * [Custom middlewares](/chapter-1/11-custom-middleware/src/core.clj)
   * [Middleware stack](/chapter-1/12-stack-interruption/src/core.clj)
   * [Exception handling](/chapter-1/13-exception-handling/src/core.clj)
+  * [Resource serving](/chapter-1/14-resource-handling/src/core.clj)
 
 #### Chapter 2. Spec
   * []
