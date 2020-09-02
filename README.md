@@ -6,7 +6,7 @@ Examples from "clojure in production" book
 #### Chapter 1. Ring, web
   * [Simple ring application](/chapter-1/1-simple/src/core.clj)
   * [Compojure routing](/chapter-1/2-compojure-routing/src/core.clj)
-  * [Complex compojure routes](/chapter-11/3-compojure-advanced/src/core.clj)
+  * [Complex compojure routes](/chapter-1/3-compojure-advanced/src/core.clj)
   * [Bidi routing](/chapter-1/4-bidi-routing/src/core.clj)
   * [Bidi advanced](/chapter-1/5-bidi-advanced/src/core.clj)
   * [Middleware base](/chapter-1/6-base-middleware/src/core.clj)
