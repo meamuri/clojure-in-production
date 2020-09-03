@@ -21,4 +21,4 @@ Examples from "clojure in production" book
   * [Proxy server](/chapter-1/15-proxy/src/core.clj)
 
 #### Chapter 2. Spec
-  * []
+  * [Basics](/chapter-2/01-basics/src/core.clj)
