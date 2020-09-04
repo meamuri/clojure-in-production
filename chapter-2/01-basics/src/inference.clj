@@ -88,3 +88,42 @@
   (s/valid? ::status "done")     ;; true
   (s/valid? ::status nil))       ;; false
 
+(defmacro with-conformer
+  [[bind] & body]
+  `(s/conformer
+    (fn [~bind]
+      (try
+        ~@body
+        (catch Exception e#
+          ::s/invalid)))))
+
+(def ->int
+  (with-conformer [value]
+    (Integer/parseInt value)))
+
+(s/def ::->int
+       (s/and ::ne-string ->int))
+
+(comment
+  (s/conform ::->int "125")  ;; => 125
+  (s/conform ::->int "abc")) ;; => ::s/invalid
+
+(def ->lower
+  (s/and
+   string?
+   (s/conformer clojure.string/lower-case)))
+
+(s/def ::new->bool
+       (s/and ->lower
+              (with-conformer [val]
+                (case val
+                  ("true" "ok" "on" "1") true
+                  ("false" "nope" "off" "0") false))))
+
+(comment
+  (s/conform ::new->bool "true") ;; true
+  (s/conform ::new->bool "off")  ;; false
+  (s/conform ::new->bool true)   ;; invalid
+  (s/conform ::new->bool 0)      ;; invalid
+  (s/conform ::new->bool "1"))   ;; true
+
