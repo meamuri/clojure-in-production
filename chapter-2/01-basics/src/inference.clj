@@ -66,3 +66,25 @@
   (s/conform ::->bool true)   ;; invalid
   (s/conform ::->bool 0)      ;; invalid
   (s/conform ::->bool "1"))   ;; true
+
+(s/def ::status_ #{"todo" "in_progress" "done"})
+
+(comment
+  (s/valid? ::status_ "assigned") ;; false
+  (s/valid? ::status_ "done")     ;; true
+  (s/valid? ::status_ nil))       ;; flase
+
+
+(defn enum [& args]
+  (let [args-set (set args)]
+    (fn [value]
+      (contains? args-set value))))
+
+(s/def ::status
+  (enum "todo" "in_progress" "done"))
+
+(comment
+  (s/valid? ::status "assigned") ;; false
+  (s/valid? ::status "done")     ;; true
+  (s/valid? ::status nil))       ;; false
+
