@@ -127,3 +127,16 @@
   (s/conform ::new->bool 0)      ;; invalid
   (s/conform ::new->bool "1"))   ;; true
 
+(s/def ::smart-port
+       (s/or :string ::->int :num int?))
+
+(comment
+  (s/conform ::smart-port "152") ;; [:string 152]
+  (s/conform ::smart-port 8080)) ;; [:num 8080]
+
+(s/def :conn/port ::smart-port)
+
+(s/def ::conn (s/keys :req-un [:conn/port]))
+
+(comment 
+  (s/conform ::conn {:port 9090})) ;; {:port [:num 9090]}
