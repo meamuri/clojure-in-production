@@ -20,5 +20,8 @@ Examples from "clojure in production" book
   * [Resource serving](/chapter-1/14-resource-handling/src/core.clj)
   * [Proxy server](/chapter-1/15-proxy/src/core.clj)
 
-#### Chapter 2. Spec
-  * [Basics](/chapter-2/01-basics/src/core.clj)
+#### Chapter 2. [Spec](/chapter-2/src)
+  
+#### Chapter 3. Exceptions
+
+TBD
