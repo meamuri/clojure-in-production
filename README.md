@@ -21,4 +21,10 @@ Examples from "clojure in production" book
   * [Proxy server](/chapter-1/15-proxy/src/core.clj)
 
 #### Chapter 2. Spec
-  * [Basics](/chapter-2/01-basics/src/core.clj)
+* [Basics](/chapter-2/src/core.clj)
+* [Conform](/chapter-2/src/conform.clj)
+* [Unonform](/chapter-2/src/unnform.clj)
+  
+#### Chapter 3. Exceptions
+
+TBD
