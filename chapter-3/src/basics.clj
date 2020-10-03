@@ -138,4 +138,34 @@
   (ex-chain*))
 
 (comment
-  (log/info "First one printing"))
+  (log/info "First one printing")
+  (log/error constant-e "HTTP error"))
+
+(defn ex-print
+  [^Throwable e]
+  (let [indent "   "]
+    (doseq [e (ex-chain e)]
+      (println (-> e class .getCanonicalName))
+      (print indent)
+      (println (ex-message e))
+      (when-let [data (ex-data e)]
+        (print indent)
+        (clojure.pprint/pprint data)))))
+
+(comment
+  (ex-print constant-e))
+
+(defn log-error 
+  [^Throwable e & [^String message]]
+  (log/error 
+   (with-out-str
+     (println (or message "Error"))
+     (ex-print e))))
+
+(comment
+  (log-error constant-e)
+  (log-error constant-e "HTTP Error 500"))
+
+;; Task:
+;; Add to log-error possibility to call with pattern such as: 
+;; (log-error err "Cannot find user %s, status %s" 42 404)
