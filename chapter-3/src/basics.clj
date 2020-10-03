@@ -1,5 +1,6 @@
 (ns basics
-  (:require [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s]
+            [clojure.tools.logging :as log]))
 
 (defn weird-arithments []
   (try
@@ -9,18 +10,16 @@
 
 (comment
   (weird-arithments))
-  
-  
-  
+
 (defn show-message-example []
   (try
     (/ 1 0)
     (catch ArithmeticException e
       (println (ex-message e)))))
-  
+
 (comment
   (show-message-example))
-  
+
 (defn multiple-catch []
   (try
     (/ 1 nil)
@@ -137,3 +136,6 @@
 
 (comment
   (ex-chain*))
+
+(comment
+  (log/info "First one printing"))
