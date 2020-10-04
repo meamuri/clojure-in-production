@@ -3,7 +3,7 @@
             [config.core :refer [env]]
             [raven.client :as raven]))
 
-(def DSN (:sentry-dns env))
+(def DSN (:sentry-dsn env))
 
 (sentry/init! DSN)
 
