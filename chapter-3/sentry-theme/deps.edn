@@ -1,4 +1,7 @@
 {:deps {:org.clojure/spec.alpha {:mvn/version "0.2.187"}
         :org.clojure/tools.logging {:mvn/version "1.1.0"}
-        :ch.qos.logback/logback-classic {:mvn/version "1.2.3"}}
+        :ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
+        :io.sentry/sentry-clj {:mvn/version "0.7.2"}
+        :exoscale/raven {:mvn/version "0.4.15"}
+        :yogthos/config {:mvn/version "1.1.7"}}
  :paths ["src" "resources"]}
