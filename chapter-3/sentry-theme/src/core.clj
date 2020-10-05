@@ -1,11 +1,7 @@
-(ns sentry-theme
+(ns core
   (:require [sentry-clj.core :as sentry]
-            [config.core :refer [env]]
+            [infrastructure :refer [DSN] :as infr]
             [raven.client :as raven]))
-
-(def DSN (:sentry-dsn env))
-
-(sentry/init! DSN)
 
 (def constant-e
   (ex-info

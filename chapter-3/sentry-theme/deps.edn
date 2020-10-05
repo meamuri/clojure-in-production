@@ -3,5 +3,8 @@
         :ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
         :io.sentry/sentry-clj {:mvn/version "0.7.2"}
         :exoscale/raven {:mvn/version "0.4.15"}
-        :yogthos/config {:mvn/version "1.1.7"}}
+        :yogthos/config {:mvn/version "1.1.7"}
+        :ring/ring-core {:mvn/version "1.8.1"}
+        :ring/ring-jetty-adapter {:mvn/version "1.8.1"}
+        :ring/ring-json {:mvn/version "0.5.0"}}
  :paths ["src" "resources"]}
