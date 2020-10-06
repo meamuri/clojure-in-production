@@ -21,9 +21,6 @@
               (log/errorf e-sentry "Sentry error: %s" DSN)
               (log/error e "Request failed")
               {:status 500
-               :body {:msg "Internal error, please try later"}})
-            (finally
-              {:status 500
                :body {:msg "Internal error, please try later"}})))))))
 
 (defn app* [request]
