@@ -27,4 +27,5 @@ Examples from "clojure in production" book
   
 #### Chapter 3. Exceptions
 
-TBD
+* [Basics](/chapter-3/basics)
+* [Sentry](/chapter-3/sentry-theme)
