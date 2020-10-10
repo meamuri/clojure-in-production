@@ -19,13 +19,19 @@ Examples from "clojure in production" book
   * [Exception handling](/chapter-1/13-exception-handling/src/core.clj)
   * [Resource serving](/chapter-1/14-resource-handling/src/core.clj)
   * [Proxy server](/chapter-1/15-proxy/src/core.clj)
+  
+Status: :white_check_mark: completed
 
 #### Chapter 2. Spec
 * [Basics](/chapter-2/src/core.clj)
 * [Conform](/chapter-2/src/conform.clj)
 * [Unonform](/chapter-2/src/unnform.clj)
   
+Status: page 66, partition 2.10, "Анализ ошибок".
+
 #### Chapter 3. Exceptions
 
 * [Basics](/chapter-3/basics)
 * [Sentry](/chapter-3/sentry-theme)
+
+Status: page 121, partition 3.11, "Переходы по коду".
