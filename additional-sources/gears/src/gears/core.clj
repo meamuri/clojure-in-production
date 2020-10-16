@@ -25,7 +25,7 @@
   [request]
   {:status 200
    :headlers {"content-type" "text/html"}
-   :body (hg/render (html [:h1 "The text" [:div "asgas"]]))})
+   :body (hg/render (html [:div [:h1 "The text"] [:p "asgas"]]))})
 
 (defmethod multi-handler :page-hello
   [request]
