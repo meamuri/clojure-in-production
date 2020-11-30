@@ -6,7 +6,10 @@
         ;; server side
         ring/ring-core {:mvn/version "1.8.2"}
         ring/ring-jetty-adapter {:mvn/version "1.8.2"}
-        hiccup/hiccup {:mvn/version "1.0.5"}}
+        hiccup/hiccup {:mvn/version "1.0.5"}
+        
+        ;; frontend
+        reagent/reagent {:mvn/version "1.0.0-rc1"}}
  :paths ["src/cljs" 
          "src/clj" 
          "target" 

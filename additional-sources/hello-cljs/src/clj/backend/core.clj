@@ -22,7 +22,7 @@
    (head)
    [:body {:class "body-container"}
     mount-target
-    (include-js "/js/app.js")]))
+    (include-js "/cljs-out/cruel-main.js")]))
 
 (defn app* [_]
   {:status 200
