@@ -1,1 +1,1 @@
-clojure -m figwheel.main --compile hello.cruel-world --repl
+clj -A:fig -b cruel -r
