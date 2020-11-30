@@ -1,12 +1,21 @@
 (ns backend.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
-            [hiccup.core :refer [html5 head include-js]]))
+            [hiccup.page :refer [html5 include-js include-css]]
+            [hiccup.core :refer [html]]
+            [ring.middleware.resource :refer [wrap-resource]]))
 
 (def mount-target
-  [:div#app
-   [:h2 "Welcome to todo-sing"]
-   [:p "please wait while Figwheel is waking up ..."]
-   [:p "(Check the js console for hints if nothing exciting happens.)"]])
+  (html [:div#app
+         [:h2 "Welcome to app"]
+         [:p "please wait while Figwheel is waking up ..."]
+         [:p "(Check the js console for hints if nothing exciting happens.)"]]))
+
+(defn head []
+  [:head
+   [:meta {:charset "utf-8"}]
+   [:meta {:name "viewport"
+           :content "width=device-width, initial-scale=1"}]
+   (include-css "/css/site.css")])
 
 (defn page []
   (html5
@@ -15,10 +24,13 @@
     mount-target
     (include-js "/js/app.js")]))
 
-(defn app [_]
+(defn app* [_]
   {:status 200
-   :headers {"Content-Type" "text/plain"}
+   :headers {"Content-Type" "text/html"}
    :body (page)})
+
+(def app (-> app*
+             (wrap-resource "public")))
 
 (def server (atom nil))
 
