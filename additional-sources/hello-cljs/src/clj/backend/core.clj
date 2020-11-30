@@ -5,10 +5,10 @@
             [ring.middleware.resource :refer [wrap-resource]]))
 
 (def mount-target
-  (html [:div#app
+  [:div#app
          [:h2 "Welcome to app"]
          [:p "please wait while Figwheel is waking up ..."]
-         [:p "(Check the js console for hints if nothing exciting happens.)"]]))
+         [:p "(Check the js console for hints if nothing exciting happens.)"]])
 
 (defn head []
   [:head
